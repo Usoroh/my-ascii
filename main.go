@@ -44,7 +44,7 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", serveTemplate)
 	http.HandleFunc("/font", chooseFont)
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe("https://usoroh.github.io/my-ascii/", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	} else {
