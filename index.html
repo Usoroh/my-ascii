@@ -83,6 +83,7 @@
         font-size: 80px;
         text-align:center;
         color: #262823;
+        overflow: auto;
         }
 
 
@@ -131,16 +132,23 @@
      </div>
      <script>
         document.getElementById("textarea").addEventListener("keyup", sendRequest);
+        btns = document.getElementsByClassName("rbtn")
+        for (var i = 0, length = btns.length; i < length; i++) {
+          btns[i].addEventListener("click", sendRequest)
+        }
 
         function sendRequest() {
             txt = document.getElementById("textarea").innerText.replace(/\n/g, '\\n')
             btns = document.getElementsByClassName("rbtn")
+
             var font
             for (var i = 0, length = btns.length; i < length; i++) {
                 if (btns[i].checked) {
                     font = btns[i].value
                 }
             }
+
+            txt = encodeURIComponent(txt)
             fetch("http://localhost:9090/font?font="+font+"&string="+txt).then(response => {
                 console.log(response)
                 return response.json()

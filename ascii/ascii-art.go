@@ -65,21 +65,8 @@ func ScanFile(arg *os.File) []string {
 
 //open font file, and  0, 0, 0return hims
 func OpenFileAndCheckFont(input string) (*os.File, int) {
-
-	str := ""
-	var file *os.File
-	var _ error
-
-	for _, v := range input {
-		str = str + string(v)
-	}
-	if str == "standard" {
-		file, _ = os.Open("source/standard.txt")
-	} else if str == "shadow" {
-		file, _ = os.Open("source/shadow.txt")
-	} else if str == "thinkertoy" {
-		file, _ = os.Open("source/thinkertoy.txt")
-	} else {
+	file, err := os.Open("source/"+input+".txt")
+	if err != nil {
 		return nil, 500
 	}
 	return file, 200
