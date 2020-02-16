@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	// "strings"
+	"strings"
 	"fmt"
 
 	ascii "./ascii"
@@ -15,13 +15,10 @@ type fillerText struct {
 	Text string
 }
 
-var wAdress *http.ResponseWriter
-
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	if r.Method == "GET" {
-		wAdress = &w
 		if r.URL.Path != "/" {
 			fmt.Println(404)
 			t, _ := template.ParseFiles("404.html")
@@ -42,8 +39,9 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 
 		str := r.Form["string"][0]
 		f := r.Form["font"][0]
-		// newInput := strings.Replace(str, "\n", "\n", -1)
-		rStr, status := ascii.FontAscii(str, f)
+		newInput := strings.Replace(str, "\r\n", "\\n", -1)
+		fmt.Println("kek"+newInput+"kek")
+		rStr, status := ascii.FontAscii(newInput, f)
 		if status == 500 {
 			e := fillerText{Text: "500"}
 			js, _ := json.Marshal(e)
@@ -53,7 +51,6 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 		} else {
 			txt := fillerText{Text: rStr}
 			js, _ := json.Marshal(txt)
-			fmt.Println(string(js))
 			w.Header().Set("Content-Type", "application/json")
 			w.Write(js)
 		}

@@ -148,6 +148,7 @@
                 }
             }
 
+            // console.log(txt)
             txt = encodeURIComponent(txt)
             fetch("http://localhost:9090/font?font="+font+"&string="+txt).then(response => {
                 console.log(response.json)
