@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    body {
+}
+
+.main {
+  
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2em;
+  border-radius: 5px;  
+  /* background-color:#262823; */
+  background-color: #fe5556;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 800px;
+  -webkit-box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38); 
+  box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38);
+  transition: width 0.5s; 
+   margin-left: 13%; 
+
+}
+
+.wrapper {
+  display: flex;
+
+  flex-direction: row;
+
+  /*   flex-wrap: wrap; */
+}
+
+.file-menu {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fe5556;
+  width: 10%;
+  margin-right: 14%;
+  margin-top: 2em;
+  border-radius: 5px;
+   -webkit-box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38); 
+  box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38);
+}
+
+.formats {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: center;
+  background-color: rgb(242, 184, 184, 0.3);
+  border-radius: 5px;
+  width: 90%;
+  margin-top: 1em;
+}
+
+.formats > * {
+  color: rgb(255, 255, 255, 0.3)
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.fonts {
+  display: flex;
+  justify-content: center;
+}
+
+.toggle {
+  margin-top: 1em;
+}
+
+.filebtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+/* .formats > label {
+  margin-top: 2em;
+} */
+
+.label {
+  float: left;
+  padding: 0 1em;
+  text-align: center;
+}
+
+.output{
+  margin: 0 auto;
+  text-align: center;
+}
+
+button {
+  height: 30px;
+  max-height: 40px;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 1em;
+  overflow: hidden;
+}
+
+
+input[type='radio']:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius:50%;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  outline: none;
+  /* border: 1px solid #c667f5; */
+  border: 1px solid #e57a7a;
+  border-radius: 50%;
+  transform: scale(20);
+  margin: 2em;
+  transition: 0.2s;
+}
+
+input[type="radio"]:checked {
+  border: 1px solid #fe55a9;
+  /* transform: scale(25); */
+}
+
+.input {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+ }
+
+#btnlabel {
+  margin-top: 2em;
+}
+
+
+ #textarea {
+   /* background-color: #464449; */
+   background-color: white;
+   border-bottom: 3px solid #e57a7a;
+   border-radius: 5px;
+   margin: 0 auto;
+   margin-bottom: 1em;
+   font-size: 40px;
+   min-height: 120px;
+   width: 50%;
+   font-size: 80px;
+   text-align:center;
+   color: #262823;
+   overflow: auto;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+<body>
+    <div class="wrapper">
+        <div class="main">
+          <div class="header">
+            <h1>ASCII-WEB</h1>
+          </div>
+          <form action="/font" method="get">
+              <div class="fonts">
+                <label class="label" for="standard">Standard<br/>
+                  <input class="rbtn" type="radio" name="font" value="standard" checked/>
+                </label>
+                <label class="label" for="shadow">Shadow<br/>
+                  <input class="rbtn" type="radio" name="font" value="shadow"/>
+                </label>
+                <label class="label" for="thinkertoy">Thinkertoy<br/>
+                  <input class="rbtn" type="radio" name="font" value="thinkertoy"/>
+                </label>
+              </div>
+              <div class="input">
+                <div id="textarea" name="string" contentEditable="true" spellcheck="false">
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="file-menu">
+          <div class="toggle">
+            <label id="span" class="switch">
+              <input id="switch-box" type="checkbox">
+              <span class="slider round"></span>
+          </label>
+           </div>
+          <form class="formats" id="ff" action="/ff" method="get">
+            <div class="filebtn">
+            <label for="pdf">PDF<br/>
+              <input class="frbtn" type="radio" name="format" value="pdf" checked/>
+            </label>
+               <label for="txtf">TXT<br/>
+              <input class="frbtn" type="radio" name="format" value="txt"/>
+            </label>
+            </div>
+            <label id ="btnlabel" for="dwnld">Download<br/>
+              <button></button>
+             </label>
+          </form>
+        </div>
+      </div>
+      <div class="output">
+        <pre id="content">{{.Text}}</pre>
+      </div>
+      <script>
+          document.getElementById("textarea").addEventListener("click", check())
+
+          function check() {
+              alert("white")
+          }
+      </script>
+</body>
+</html>
