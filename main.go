@@ -25,9 +25,7 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 			t.Execute(w, nil)
 			return
 		}
-		// fmt.Println(w)
 		t, _ := template.ParseFiles("index.html")
-		fmt.Println(t)
 		t.Execute(w, nil)
 	}
 }
@@ -40,7 +38,6 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 		str := r.Form["string"][0]
 		f := r.Form["font"][0]
 		newInput := strings.Replace(str, "\r\n", "\\n", -1)
-		fmt.Println("kek"+newInput+"kek")
 		rStr, status := ascii.FontAscii(newInput, f)
 		if status == 500 {
 			e := fillerText{Text: "500"}
@@ -48,6 +45,12 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/json")
 			w.Write(js)
 			fmt.Println("Internal server error")
+		} else if status == 400 {
+			e := fillerText{Text: "400"}
+			js, _ := json.Marshal(e)
+			w.Header().Set("Content-Type", "application/json")
+			w.Write(js)
+			fmt.Println("Bad request")
 		} else {
 			txt := fillerText{Text: rStr}
 			js, _ := json.Marshal(txt)

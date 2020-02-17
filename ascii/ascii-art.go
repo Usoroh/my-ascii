@@ -28,6 +28,9 @@ func FontAscii(value, font string) (string, int) {
 					if indexBase == 1152 {
 						indexBase = 0
 					}
+					if indexBase < 0 || indexBase >= 850 {
+						return "", 400
+					}
 					ans += fmt.Sprint(fileBaseLetter[indexBase+i])
 				}
 				// fmt.Println()
