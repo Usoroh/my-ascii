@@ -25,6 +25,9 @@ func FontAscii(value, font string) (string, int) {
 				for _, arg := range v {
 					//find index, args letter, where locate ascii letter - fileVal array
 					indexBase := int(rune(arg)-32) * 9
+					if indexBase == 1152 {
+						indexBase = 0
+					}
 					ans += fmt.Sprint(fileBaseLetter[indexBase+i])
 				}
 				// fmt.Println()
