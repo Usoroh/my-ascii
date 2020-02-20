@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        body {
+  background-color: #464449;
+}
+
+.main {
+  
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2em;
+  border-radius: 5px;  
+  /* background-color:#262823; */
+  background-color: #fe5556;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 800px;
+  -webkit-box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38); 
+  box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38);
+  transition: width 0.5s; 
+   margin-left: 13%; 
+
+}
+
+.wrapper {
+  display: flex;
+
+  flex-direction: row;
+
+  /*   flex-wrap: wrap; */
+}
+
+.file-menu {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fe5556;
+  width: 10%;
+  margin-right: 14%;
+  margin-top: 2em;
+  border-radius: 5px;
+   -webkit-box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38); 
+  box-shadow: -1px 3px 9px 5px rgba(0,0,0,0.38);
+}
+
+.formats {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+/*   background-color: white; */
+  text-align: center;
+   background-color: rgb(242, 184, 184, 0.3);
+   margin-top: 1em;
+    border-radius: 5px;
+  width: 90%;
+  padding-bottom: 10%;
+  color: rgb(255, 255, 255, 0.3);
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+h1 {
+    color: white;
+}
+
+#textarea  {
+    font-size: 80px;
+    min-height: 120px;
+    text-align:center;
+}
+
+pre {
+    color: white;
+    width: fit-content;
+    /* background-color: grey; */
+    width: 80%;
+    text-align: center;
+    margin-left: 10em;
+    padding-right: 7em;
+}
+
+
+.locked {
+  background-color: #fe5556;
+  width: 90%;
+  margin-top: 1em;
+  text-align: center;
+  border-radius: 5px;
+  padding-bottom: 10%;
+  color: white;
+  pointer-events: auto;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.fonts {
+  display: flex;
+  justify-content: center;
+}
+
+.toggle {
+  margin-top: 1em;
+}
+
+.filebtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+/* .formats > label {
+  margin-top: 2em;
+} */
+
+.label {
+  float: left;
+  padding: 0 1em;
+  text-align: center;
+}
+
+.output{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btnlabel {
+  color: rgb(255, 255, 255, 0.3);
+  border: 1px solid rgb(255, 255, 255, 0.3);
+  border-radius: 5px;
+  width: 50%; 
+  margin: 0 auto;
+  padding: 1%;
+  overflow: hidden;
+  margin-top: 2em;
+  transition: 0.5s;
+}
+
+.btnunlocked {
+  color: white;
+}
+
+input[type='radio']:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius:50%;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  outline: none;
+  /* border: 1px solid #c667f5; */
+  border: 1px solid #e57a7a;
+  border-radius: 50%;
+  transform: scale(20);
+  margin: 2em;
+  transition: 0.2s;
+}
+
+input[type="radio"]:checked {
+  border: 1px solid #fe55a9;
+  /* transform: scale(25); */
+}
+
+.input {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+ }
+
+
+
+
+ #textarea {
+   /* background-color: #464449; */
+   background-color: white;
+   border-bottom: 3px solid #e57a7a;
+   border-radius: 5px;
+   margin: 0 auto;
+   margin-bottom: 1em;
+   font-size: 40px;
+   min-height: 120px;
+   width: 50%;
+   font-size: 80px;
+   text-align:center;
+   color: #262823;
+   overflow: auto;
+}
+
+.output {
+    margin-top: 1em;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="main">
+          <div class="header">
+            <h1>ASCII-WEB</h1>
+          </div>
+          <form action="/font" method="get">
+              <div class="fonts">
+                <label class="label" for="standard">Standard<br/>
+                  <input class="rbtn" type="radio" name="font" value="standard" checked/>
+                </label>
+                <label class="label" for="shadow">Shadow<br/>
+                  <input class="rbtn" type="radio" name="font" value="shadow"/>
+                </label>
+                <label class="label" for="thinkertoy">Thinkertoy<br/>
+                  <input class="rbtn" type="radio" name="font" value="thinkertoy"/>
+                </label>
+              </div>
+              <div class="input">
+                <div id="textarea" name="string" contentEditable="true" spellcheck="false">
+                </div>
+              </div>
+          </form>
+        </div>
+        <div class="file-menu">
+          <div class="toggle">
+            <label id="span" class="switch">
+              <input id="switch-box" type="checkbox">
+              <span class="slider round"></span>
+          </label>
+           </div>
+          <form class="formats" id="ff" action="/ff" method="get">
+            <div class="filebtn">
+            <label for="pdf">PDF<br/>
+              <input class="frbtn" type="radio" name="format" value="pdf" checked/>
+            </label>
+               <label for="txtf">TXT<br/>
+              <input class="frbtn" type="radio" name="format" value="txt"/>
+            </label>
+            </div>
+            <a href="#" class="btnlabel">DOWNLOAD</a>
+          </form>
+        </div>
+      </div>
+      <div class="output">
+        <pre id="content">{{.Text}}</pre>
+      </div>
+      <script>
+
+        document.getElementById("textarea").addEventListener("keyup", sendRequest);
+        btns = document.getElementsByClassName("rbtn")
+        for (var i = 0, length = btns.length; i < length; i++) {
+          btns[i].addEventListener("click", sendRequest)
+        }
+
+        function sendRequest() {
+            txt = document.getElementById("textarea").innerText.replace(/\n/g, '\\n')
+            btns = document.getElementsByClassName("rbtn")
+
+            var font
+            for (var i = 0, length = btns.length; i < length; i++) {
+                if (btns[i].checked) {
+                    font = btns[i].value
+                }
+            }
+
+            // console.log(txt)
+            txt = encodeURIComponent(txt)
+            fetch("http://localhost:9090/font?font="+font+"&string="+txt).then(response => {
+                console.log(response.json)
+                return response.json()
+            }).then(function(data) {
+                if (data.Text === "500") {
+                  document.getElementsByTagName("body")[0].innerHTML = "<h1>Internal Server Error</h1>"
+                } else if (data.Text === "400") {
+                  document.getElementsByTagName("body")[0].innerHTML = "<h1>Bad request</h1>"
+                } else {
+                  document.getElementById("content").innerHTML = data.Text
+                }
+            })
+        }
+
+          //toggle switch
+          document.getElementById("switch-box").addEventListener("click", toggleClass)
+
+
+            function toggleClass() {
+            var a = document.getElementById("ff");
+            var b = document.getElementsByClassName("btnlabel")[0]
+            a.classList.toggle("locked")
+            b.classList.toggle("btnunlocked")
+            }
+      </script>
+</body>
+</html>
