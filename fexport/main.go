@@ -60,6 +60,13 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func createFile(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	if r.Method == "GET" {
+		fmt.Println(r.Form["format"][0])
+	}
+}
+
 // func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 // 	w.WriteHeader(status)
 // 	if status == 500 {
@@ -76,6 +83,7 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", serveTemplate)
 	http.HandleFunc("/font", chooseFont)
+	http.HandleFunc("/download", createFile)
 	err := http.ListenAndServe(":9090", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)

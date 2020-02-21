@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -141,7 +141,7 @@ form {
 }
 
 .btnlabel {
-  color: rgb(255, 255, 255, 0.3);
+  /* color: rgb(255, 255, 255, 0.3);
   border: 1px solid rgb(255, 255, 255, 0.3);
   border-radius: 5px;
   width: 50%; 
@@ -149,7 +149,16 @@ form {
   padding: 1%;
   overflow: hidden;
   margin-top: 2em;
-  transition: 0.5s;
+  transition: 0.5s; */
+  color: white;
+  background-color: #fb7374;
+  border: 1px solid rgb(255, 255, 255, 0.3);
+  border-radius: 5px;
+  width: 50%; 
+  margin: 0 auto;
+  margin-top: 2em;
+  transition: 0.5s; 
+
 }
 
 .btnunlocked {
@@ -302,7 +311,7 @@ input:checked + .slider:before {
               <span class="slider round"></span>
           </label>
            </div>
-          <form class="formats" id="ff" action="/ff" method="get">
+          <form class="formats" id="ff" action="/download" method="get">
             <div class="filebtn">
             <label for="pdf">PDF<br/>
               <input class="frbtn" type="radio" name="format" value="pdf" checked/>
@@ -311,7 +320,7 @@ input:checked + .slider:before {
               <input class="frbtn" type="radio" name="format" value="txt"/>
             </label>
             </div>
-            <a href="#" class="btnlabel">DOWNLOAD</a>
+            <button class="btnlabel">DOWNLOAD</button>
           </form>
         </div>
       </div>
