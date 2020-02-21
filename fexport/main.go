@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"strings"
 	"fmt"
+	"time"
+	"os"
 
 	ascii "./ascii"
 )
@@ -63,7 +65,17 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 func createFile(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	if r.Method == "GET" {
-		fmt.Println(r.Form["format"][0])
+		str := r.Form["string"][0]
+		fmt.Println(str)
+		format := r.Form["format"][0]
+		currentTime := time.Now()
+
+		file, err := os.Create(currentTime.String() + format)
+		if err != nil {
+			fmt.Println("Cannot create file")
+			return 
+		}
+		file.WriteString(str)
 	}
 }
 

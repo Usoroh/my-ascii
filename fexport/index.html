@@ -158,6 +158,7 @@ form {
   margin: 0 auto;
   margin-top: 2em;
   transition: 0.5s; 
+  overflow: hidden;
 
 }
 
@@ -286,7 +287,7 @@ input:checked + .slider:before {
           <div class="header">
             <h1>ASCII-WEB</h1>
           </div>
-          <form action="/font" method="get">
+          <form id="textForm"action="/font" method="get">
               <div class="fonts">
                 <label class="label" for="standard">Standard<br/>
                   <input class="rbtn" type="radio" name="font" value="standard" checked/>
@@ -311,16 +312,16 @@ input:checked + .slider:before {
               <span class="slider round"></span>
           </label>
            </div>
-          <form class="formats" id="ff" action="/download" method="get">
+          <form id = "fileForm" class="formats" id="ff" action="/download" method="get">
             <div class="filebtn">
             <label for="pdf">PDF<br/>
-              <input class="frbtn" type="radio" name="format" value="pdf" checked/>
+              <input class="frbtn" type="radio" name="format" value=".pdf" checked/>
             </label>
                <label for="txtf">TXT<br/>
-              <input class="frbtn" type="radio" name="format" value="txt"/>
+              <input class="frbtn" type="radio" name="format" value=".txt"/>
             </label>
             </div>
-            <button class="btnlabel">DOWNLOAD</button>
+            <button id="btn" class="btnlabel" onclick="submitForms()">DOWNLOAD</button>
           </form>
         </div>
       </div>
@@ -328,6 +329,7 @@ input:checked + .slider:before {
         <pre id="content">{{.Text}}</pre>
       </div>
       <script>
+
 
         document.getElementById("textarea").addEventListener("keyup", sendRequest);
         btns = document.getElementsByClassName("rbtn")
