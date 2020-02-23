@@ -312,7 +312,7 @@ input:checked + .slider:before {
               <span class="slider round"></span>
           </label>
            </div>
-          <form id = "fileForm" class="formats" id="ff" action="/download" method="get">
+          <div id = "fileForm" class="formats">
             <div class="filebtn">
             <label for="pdf">PDF<br/>
               <input class="frbtn" type="radio" name="format" value=".pdf" checked/>
@@ -321,8 +321,8 @@ input:checked + .slider:before {
               <input class="frbtn" type="radio" name="format" value=".txt"/>
             </label>
             </div>
-            <button id="btn" class="btnlabel" onclick="submitForms()">DOWNLOAD</button>
-          </form>
+            <button id="btn" class="btnlabel" onclick="downloadRequest()">DOWNLOAD</button>
+          </div>
         </div>
       </div>
       <div class="output">
@@ -330,6 +330,22 @@ input:checked + .slider:before {
       </div>
       <script>
 
+        function downloadRequest() {
+          content = document.getElementById("textarea").innerText.replace(/\n/g, '\\n')
+          format = document.getElementsByClassName("frbtn")
+          font = document.getElementsByClassName("rbtn")
+          for (i = 0; i < format.length; i++) {
+            if (format[i].checked) {
+              format = format[i].value
+            }
+          }
+          for (i = 0; i < font.length; i++) {
+            if (font[i].checked) {
+              font = font[i].value
+            }
+          }
+          fetch("http://localhost:9090/download?format="+format+"&text="+content+"&font="+font);
+        } 
 
         document.getElementById("textarea").addEventListener("keyup", sendRequest);
         btns = document.getElementsByClassName("rbtn")
@@ -369,7 +385,7 @@ input:checked + .slider:before {
 
 
             function toggleClass() {
-            var a = document.getElementById("ff");
+            var a = document.getElementById("fileForm");
             var b = document.getElementsByClassName("btnlabel")[0]
             a.classList.toggle("locked")
             b.classList.toggle("btnunlocked")

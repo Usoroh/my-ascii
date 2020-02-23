@@ -65,9 +65,11 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 func createFile(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	if r.Method == "GET" {
-		str := r.Form["string"][0]
+		str := r.Form["text"][0]
 		fmt.Println(str)
 		format := r.Form["format"][0]
+		font := r.Form["font"][0]
+		fmt.Println(format)
 		currentTime := time.Now()
 
 		file, err := os.Create(currentTime.String() + format)
@@ -75,6 +77,7 @@ func createFile(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Cannot create file")
 			return 
 		}
+		str, _ = ascii.FontAscii(str, font)
 		file.WriteString(str)
 	}
 }
