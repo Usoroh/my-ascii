@@ -1,6 +1,7 @@
 package main
 
 import (
+	gofpdf "./gofpdf"
 	"encoding/json"
 	"html/template"
 	"log"
@@ -12,6 +13,7 @@ import (
 
 	ascii "./ascii"
 )
+
 
 type fillerText struct {
 	Text string
@@ -69,16 +71,22 @@ func createFile(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(str)
 		format := r.Form["format"][0]
 		font := r.Form["font"][0]
-		fmt.Println(format)
 		currentTime := time.Now()
-
-		file, err := os.Create(currentTime.String() + format)
-		if err != nil {
-			fmt.Println("Cannot create file")
-			return 
-		}
 		str, _ = ascii.FontAscii(str, font)
-		file.WriteString(str)
+		if format == ".pdf" {
+			pdf := gofpdf.New("P", "mm", "A4", "")
+			pdf.AddPage()
+			pdf.CellFormat(190, 7, str, "0", 0, "CM", false, 0, "")
+			pdf.OutputFileAndClose("keko")
+			fmt.Println("created pdf")
+		} else {
+			file, err := os.Create(currentTime.String() + format)
+			if err != nil {
+				fmt.Println("Cannot create file")
+				return 
+			}
+			file.WriteString(str)
+		}
 	}
 }
 
