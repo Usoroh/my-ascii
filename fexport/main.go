@@ -1,7 +1,6 @@
 package main
 
 import (
-	gofpdf "./gofpdf"
 	"encoding/json"
 	"html/template"
 	"log"
@@ -73,20 +72,13 @@ func createFile(w http.ResponseWriter, r *http.Request) {
 		font := r.Form["font"][0]
 		currentTime := time.Now()
 		str, _ = ascii.FontAscii(str, font)
-		if format == ".pdf" {
-			pdf := gofpdf.New("P", "mm", "A4", "")
-			pdf.AddPage()
-			pdf.CellFormat(190, 7, str, "0", 0, "CM", false, 0, "")
-			pdf.OutputFileAndClose("keko")
-			fmt.Println("created pdf")
-		} else {
 			file, err := os.Create(currentTime.String() + format)
 			if err != nil {
 				fmt.Println("Cannot create file")
 				return 
 			}
 			file.WriteString(str)
-		}
+		
 	}
 }
 
