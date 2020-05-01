@@ -2,11 +2,12 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strings"
-	"fmt"
 
 	ascii "./ascii"
 )
@@ -15,6 +16,13 @@ type fillerText struct {
 	Text string
 }
 
+func getPort() string {
+	p := os.Getenv("PORT")
+	if p != "" {
+		return ":" + p
+	}
+	return ":9090"
+}
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
@@ -76,7 +84,7 @@ func chooseFont(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", serveTemplate)
 	http.HandleFunc("/font", chooseFont)
-	err := http.ListenAndServe(":9090", nil)
+	err := http.ListenAndServe(getPort(), nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
